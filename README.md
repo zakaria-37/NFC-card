@@ -1,14 +1,18 @@
-# Maria Bag — Page réseaux + QR
+# Maria Bag — Carte NFC du gérant
 
-- `index.html` : page pro avec tous les réseaux (Boutique, Instagram, Facebook, TikTok).
-- `cadre.html` : cadre QR 20 × 30 cm prêt à imprimer sur Forex (le QR pointe vers la page d'accueil du site).
-- `render.yaml` : configuration Render (site statique).
+Page ouverte quand on approche un téléphone de la carte NFC du gérant.
 
-## Mise en ligne
+- `index.html` : page du gérant (Appeler, WhatsApp 0550 57 50 93, Enregistrer le contact, boutique et réseaux).
+- `contact.vcf` : fiche contact téléchargée par le bouton « Enregistrer ».
+- `intro.mp4`, `logo.png` : vidéo d'intro et logo.
 
-1. Créer un dépôt GitHub (ex. `maria-bag-links`) et y envoyer ces fichiers.
-2. Sur https://dashboard.render.com → **New → Static Site** → choisir le dépôt.
-   - Build command : *(vide)* · Publish directory : `.`
-3. Ouvrir `https://<votre-site>.onrender.com/cadre.html` → **Imprimer / PDF** → envoyer le PDF à l'imprimeur Forex.
+En ligne : https://nfc-card-qisa.onrender.com (Render, Static Site, redéploiement automatique à chaque commit sur `main`).
 
-Pour changer un lien : modifier `index.html`, faire un commit → Render redéploie tout seul. Le QR ne change pas.
+## Programmer la carte NFC
+
+1. Installer l'appli **NFC Tools** (Android / iPhone).
+2. **Écrire → Ajouter un enregistrement → URL** : `https://nfc-card-qisa.onrender.com`
+3. **Écrire**, puis approcher la carte du téléphone.
+4. (Optionnel) **Autres → Verrouiller la puce** pour qu'elle ne puisse plus être modifiée — irréversible.
+
+Pour changer le numéro : modifier `+213550575093` dans `index.html` et `contact.vcf`.
