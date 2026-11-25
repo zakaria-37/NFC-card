@@ -1,6 +1,6 @@
-# Maria Bag — Carte NFC du gérant
+# Maria Bag — Carte NFC — Boudjellal Boualem (CEO)
 
-Page ouverte quand on approche un téléphone de la carte NFC du gérant.
+Page ouverte quand on approche un téléphone de la carte NFC de Boudjellal Boualem.
 
 - `index.html` : page du gérant (Appeler, WhatsApp 0550 57 50 93, Enregistrer le contact, boutique et réseaux).
 - `carte.html` : conception de la carte NFC recto / verso (85,6 × 54 mm + fond perdu) avec QR personnalisé.
