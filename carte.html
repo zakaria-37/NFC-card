@@ -30,8 +30,9 @@
   .card > *:not(.rings){position:relative;z-index:2}
 
   /* ---------- RECTO ---------- */
-  .front .rings{left:50%;top:47%;width:120mm;height:120mm;transform:translate(-50%,-50%)}
-  .front .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-bottom:3mm}
+  /* rings and logo disc share the same centre: 50% / 25.5 mm */
+  .front .rings{left:50%;top:25.5mm;width:120mm;height:120mm;transform:translate(-50%,-50%)}
+  .front .center{position:absolute;left:0;right:0;top:15mm;display:flex;flex-direction:column;align-items:center}
   .front .disc{width:21mm;height:21mm;border-radius:50%;display:grid;place-items:center;
     background:radial-gradient(circle at 50% 35%,#1d1d1d,#050505 70%);
     box-shadow:0 0 0 .25mm rgba(255,255,255,.85),0 0 3mm rgba(255,255,255,.25),inset 0 .6mm 1.2mm rgba(255,255,255,.08)}
@@ -55,9 +56,9 @@
   .back .row i{width:3.6mm;height:3.6mm;border-radius:50%;border:.2mm solid rgba(255,255,255,.55);display:grid;place-items:center;flex-shrink:0}
   .back .row svg{width:1.9mm;height:1.9mm;fill:#fff}
   .back .row.tel{font-weight:700;font-size:2.2mm;letter-spacing:.08em;color:#fff}
-  .back .qrbox{position:absolute!important;right:8mm;top:12.6mm;width:24mm;padding:1.4mm;background:#fff;border-radius:2mm;box-shadow:0 0 0 .25mm rgba(255,255,255,.4),0 0 4mm rgba(255,255,255,.18)}
+  .back .qrbox{position:absolute!important;right:8mm;top:18.5mm;width:24mm;padding:1.4mm;background:#fff;border-radius:2mm;box-shadow:0 0 0 .25mm rgba(255,255,255,.4),0 0 4mm rgba(255,255,255,.18)}
   .back .qr{width:100%;display:block}
-  .back .qrcap{position:absolute!important;right:8mm;top:39.4mm;width:24mm;text-align:center;font-size:1.25mm;letter-spacing:.34em;padding-left:.34em;color:rgba(255,255,255,.8);font-weight:600}
+  .back .qrcap{position:absolute!important;right:8mm;top:45.3mm;width:24mm;text-align:center;font-size:1.25mm;letter-spacing:.34em;padding-left:.34em;color:rgba(255,255,255,.8);font-weight:600}
   .back .logo-s{position:absolute!important;left:7mm;bottom:7mm;width:15mm;filter:invert(1);mix-blend-mode:screen;opacity:.95}
 
   @media print{
@@ -122,7 +123,7 @@
     }
     svg.innerHTML = g;
   }
-  rings(document.getElementById('ringsFront'), 9, 10.5, 15);
+  rings(document.getElementById('ringsFront'), 9, 10.5, 17.5);   // first ring = logo disc edge (21 mm)
   rings(document.getElementById('ringsBack'), 9, 10.5, 15);
 
   /* Custom QR: rounded modules + rounded eyes + company logo in the middle */
