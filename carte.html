@@ -35,10 +35,12 @@
   .front .center{position:absolute;left:0;right:0;top:15mm;display:flex;flex-direction:column;align-items:center}
   .front .disc{width:21mm;height:21mm;border-radius:50%;display:grid;place-items:center;
     background:radial-gradient(circle at 50% 35%,#1d1d1d,#050505 70%);
-    box-shadow:0 0 0 .25mm rgba(255,255,255,.85),0 0 3mm rgba(255,255,255,.25),inset 0 .6mm 1.2mm rgba(255,255,255,.08)}
-  .front .disc img{width:15.5mm;filter:invert(1);mix-blend-mode:screen}
+    border:.25mm solid rgba(255,255,255,.9);position:relative}
+  /* glow drawn with a gradient (blurred shadows become grey boxes in PDF viewers) */
+  .front .disc::before{content:"";position:absolute;inset:-3.2mm;border-radius:50%;z-index:-1;background:radial-gradient(circle,rgba(255,255,255,.2) 0,rgba(255,255,255,.14) 66%,rgba(255,255,255,0) 100%)}
+  .front .disc img{width:14.5mm}
   .front .brand{margin-top:3mm;font-weight:800;font-size:3.6mm;letter-spacing:.32em;padding-left:.32em}
-  .front .tag{margin-top:1.2mm;font-size:1.55mm;letter-spacing:.34em;padding-left:.34em;color:rgba(255,255,255,.88);font-weight:500;text-shadow:0 0 .8mm #000,0 0 1.6mm #000}
+  .front .tag{margin-top:1.2mm;font-size:1.55mm;letter-spacing:.34em;padding-left:.34em;color:#fff;font-weight:600}
   .nfc{position:absolute!important;right:6.5mm;top:6.5mm;width:4.4mm;height:4.4mm}
   .nfc path{fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round}
 
@@ -54,10 +56,10 @@
   .back .row i{width:3.6mm;height:3.6mm;border-radius:50%;border:.2mm solid rgba(255,255,255,.55);display:grid;place-items:center;flex-shrink:0}
   .back .row svg{width:1.9mm;height:1.9mm;fill:#fff}
   .back .row.tel{font-weight:700;font-size:2.2mm;letter-spacing:.08em;color:#fff}
-  .back .qrbox{position:absolute!important;right:8mm;top:18.5mm;width:24mm;padding:1.4mm;background:#fff;border-radius:2mm;box-shadow:0 0 0 .25mm rgba(255,255,255,.4),0 0 4mm rgba(255,255,255,.18)}
+  .back .qrbox{position:absolute!important;right:8mm;top:18.5mm;width:24mm;padding:1.4mm;background:#fff;border-radius:2mm}
   .back .qr{width:100%;display:block}
   .back .qrcap{position:absolute!important;right:8mm;top:45.3mm;width:24mm;text-align:center;font-size:1.25mm;letter-spacing:.34em;padding-left:.34em;color:rgba(255,255,255,.8);font-weight:600}
-  .back .logo-s{position:absolute!important;left:7mm;bottom:7mm;width:15mm;filter:invert(1);mix-blend-mode:screen;opacity:.95}
+  .back .logo-s{position:absolute!important;left:7mm;bottom:7mm;width:14mm}
 
   @media print{
     body{background:none;padding:0;display:block}
@@ -83,7 +85,7 @@
   <svg class="rings" id="ringsFront" viewBox="0 0 200 200"></svg>
   <svg class="nfc" viewBox="0 0 24 24" aria-label="NFC"><path d="M6 8.5a5 5 0 0 1 0 7"/><path d="M10 5.5a9.5 9.5 0 0 1 0 13"/><path d="M14 2.5a14 14 0 0 1 0 19"/></svg>
   <div class="center">
-    <div class="disc"><img src="logo.png" alt="Maria Bag"></div>
+    <div class="disc"><img src="logo-white.png" alt="Maria Bag"></div>
     <div class="brand">MARIA BAG</div>
     <div class="tag">VOTRE IDÉE. NOTRE SAVOIR-FAIRE.</div>
   </div>
@@ -101,7 +103,7 @@
 
   <div class="qrbox"><svg class="qr" id="qr" viewBox="0 0 100 100"></svg></div>
   <div class="qrcap">SCAN · NFC</div>
-  <img class="logo-s" src="logo.png" alt="Maria Bag">
+  <img class="logo-s" src="logo-white.png" alt="Maria Bag">
 </div></section>
 
 <script>
