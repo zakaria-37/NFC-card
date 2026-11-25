@@ -23,8 +23,6 @@
 
   .sheet{width:91.6mm;height:60mm;position:relative;zoom:2.4;box-shadow:0 8mm 16mm rgba(0,0,0,.25)}
   .card{position:absolute;inset:0;overflow:hidden;background:#050505;color:#fff}
-  .sheet::after{content:"";position:absolute;inset:3mm;border-radius:3.2mm;outline:.15mm dashed rgba(255,60,60,.7);pointer-events:none;z-index:9}
-  body:not(.guides) .sheet::after{display:none}
 
   /* soft vignette like the reference */
   .card::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,#1a1a1a 0%,#070707 60%,#000 100%);z-index:0}
@@ -46,10 +44,9 @@
   .nfc path{fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round}
 
   /* ---------- VERSO ---------- */
-  .back .rings{right:-34mm;bottom:-40mm;width:96mm;height:96mm}
-  .back .rings.top{right:-22mm;top:-46mm;bottom:auto;width:70mm;height:70mm;opacity:.55}
-  .back .accent{position:absolute!important;left:7mm;top:9.2mm;width:.5mm;height:9.2mm;background:#fff;border-radius:.3mm}
-  .back .head{position:absolute!important;left:9.6mm;top:8.6mm}
+  .back .rings{left:50%;top:50%;width:120mm;height:120mm;transform:translate(-50%,-50%);opacity:.75}
+  .back .accent{position:absolute!important;left:7mm;top:12.2mm;width:.5mm;height:9.2mm;background:#fff;border-radius:.3mm}
+  .back .head{position:absolute!important;left:9.6mm;top:11.6mm}
   .back .name{font-weight:800;font-size:3.05mm;letter-spacing:.05em;line-height:1.05;white-space:nowrap}
   .back .title{margin-top:1.1mm;font-size:1.75mm;letter-spacing:.28em;color:rgba(255,255,255,.75);font-weight:500}
   .back .title b{color:#fff;font-weight:700}
@@ -58,29 +55,27 @@
   .back .row i{width:3.6mm;height:3.6mm;border-radius:50%;border:.2mm solid rgba(255,255,255,.55);display:grid;place-items:center;flex-shrink:0}
   .back .row svg{width:1.9mm;height:1.9mm;fill:#fff}
   .back .row.tel{font-weight:700;font-size:2.2mm;letter-spacing:.08em;color:#fff}
-  .back .qrbox{position:absolute!important;right:7.4mm;top:15.4mm;width:20.4mm;padding:1.3mm;background:#fff;border-radius:2mm;box-shadow:0 0 0 .25mm rgba(255,255,255,.4),0 0 4mm rgba(255,255,255,.18)}
+  .back .qrbox{position:absolute!important;right:8mm;top:12.6mm;width:24mm;padding:1.4mm;background:#fff;border-radius:2mm;box-shadow:0 0 0 .25mm rgba(255,255,255,.4),0 0 4mm rgba(255,255,255,.18)}
   .back .qr{width:100%;display:block}
-  .back .qrcap{position:absolute!important;right:7.4mm;top:37.6mm;width:20.4mm;text-align:center;font-size:1.25mm;letter-spacing:.34em;padding-left:.34em;color:rgba(255,255,255,.8);font-weight:600}
-  .back .logo-s{position:absolute!important;left:7mm;bottom:6.4mm;width:12.5mm;filter:invert(1);mix-blend-mode:screen;opacity:.95}
+  .back .qrcap{position:absolute!important;right:8mm;top:39.4mm;width:24mm;text-align:center;font-size:1.25mm;letter-spacing:.34em;padding-left:.34em;color:rgba(255,255,255,.8);font-weight:600}
+  .back .logo-s{position:absolute!important;left:7mm;bottom:7mm;width:15mm;filter:invert(1);mix-blend-mode:screen;opacity:.95}
 
   @media print{
     body{background:none;padding:0;display:block}
     .tools,.label{display:none}
     .sheet{zoom:1;box-shadow:none;page-break-after:always;break-after:page}
-    .sheet::after{display:none}
     *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   }
   @media (max-width:640px){.sheet{zoom:1.05}}
 </style>
 </head>
-<body class="guides">
+<body>
 
 <div class="tools">
   <b>Carte NFC — Boudjellal Boualem · CEO Maria Bag</b>
-  <label><input type="checkbox" id="guides" checked> Repères de coupe</label>
   <button id="print">Imprimer / PDF</button>
   <button id="svg">QR seul (SVG)</button>
-  <p>Format carte CR80 : 85,6 × 54 mm + 3 mm de fond perdu (page 91,6 × 60 mm). Ligne rouge pointillée = bord de coupe (masquée à l'impression).
+  <p>Format carte CR80 : 85,6 × 54 mm + 3 mm de fond perdu (page 91,6 × 60 mm).
   Impression : « Enregistrer en PDF », marges « Aucune », échelle 100 %, cocher « Graphiques d'arrière-plan ». Page 1 = recto, page 2 = verso.</p>
 </div>
 
@@ -98,20 +93,12 @@
 
 <div class="label">VERSO</div>
 <section class="sheet"><div class="card back">
-  <svg class="rings top" id="ringsBack2" viewBox="0 0 200 200"></svg>
   <svg class="rings" id="ringsBack" viewBox="0 0 200 200"></svg>
 
   <span class="accent"></span>
   <div class="head">
     <div class="name">BOUDJELLAL BOUALEM</div>
     <div class="title"><b>CEO</b> · MARIA BAG</div>
-  </div>
-
-  <div class="rows">
-    <div class="row tel"><i><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg></i>0550 57 50 93</div>
-    <div class="row"><i><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.4-.5c.2-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 2.5 1 3 .8 3.6.8.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4zM12 21.8c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM12 0a12 12 0 0 0-10.3 18L0 24l6.2-1.6A12 12 0 1 0 12 0z"/></svg></i>WhatsApp 0550 57 50 93</div>
-    <div class="row"><i><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0 3.6a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.4-11.8a1.4 1.4 0 1 0 0 2.9 1.4 1.4 0 0 0 0-2.9z"/></svg></i>@maria_._bag</div>
-    <div class="row"><i><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.9a15.7 15.7 0 0 0-1.4-3.6A8 8 0 0 1 18.9 8zM12 4c.8 1.2 1.5 2.5 1.9 4h-3.8c.4-1.5 1.1-2.8 1.9-4zM4.3 14a8.2 8.2 0 0 1 0-4h3.4a16.5 16.5 0 0 0 0 4H4.3zm.8 2h3a15.7 15.7 0 0 0 1.3 3.6A8 8 0 0 1 5.1 16zM8 8H5.1a8 8 0 0 1 4.3-3.6C8.8 5.5 8.4 6.7 8 8zm4 12c-.8-1.2-1.5-2.5-1.9-4h3.8c-.4 1.5-1.1 2.8-1.9 4zm2.3-6H9.7a14.7 14.7 0 0 1 0-4h4.6a14.7 14.7 0 0 1 0 4zm.3 5.6c.6-1.1 1.1-2.3 1.4-3.6h2.9a8 8 0 0 1-4.3 3.6zm1.7-5.6a16.5 16.5 0 0 0 0-4h3.4a8.2 8.2 0 0 1 0 4h-3.4z"/></svg></i>www.mariabag.com</div>
   </div>
 
   <div class="qrbox"><svg class="qr" id="qr" viewBox="0 0 100 100"></svg></div>
@@ -136,10 +123,9 @@
     svg.innerHTML = g;
   }
   rings(document.getElementById('ringsFront'), 9, 10.5, 15);
-  rings(document.getElementById('ringsBack'), 8, 11, 12);
-  rings(document.getElementById('ringsBack2'), 5, 13, 14);
+  rings(document.getElementById('ringsBack'), 9, 10.5, 15);
 
-  /* Custom QR: rounded modules + rounded eyes + ∞ in the middle */
+  /* Custom QR: rounded modules + rounded eyes + company logo in the middle */
   function drawQR(svg){
     const qr = qrcode(0, 'H'); qr.addData(URL_TARGET); qr.make();
     const n = qr.getModuleCount(), q = 100 / n;
@@ -155,15 +141,19 @@
       return `<rect x="${x+q*.5}" y="${y+q*.5}" width="${q*6}" height="${q*6}" rx="${q*1.8}" fill="none" stroke="#000" stroke-width="${q}"/>`+
              `<rect x="${x+q*2}" y="${y+q*2}" width="${q*3}" height="${q*3}" rx="${q*.9}"/>`; };
     out += eye(0,0) + eye(0,n-7) + eye(n-7,0);
-    const s = hole*q, o = h0*q;
-    out += `<rect x="${o}" y="${o}" width="${s}" height="${s}" rx="${q*1.2}" fill="#000"/>`;
-    const cx = 50, cy = 50, w = s*.36, hh = s*.2;
-    out += `<path d="M${cx} ${cy}c-${w*.5} -${hh} -${w} -${hh} -${w} 0s${w*.5} ${hh} ${w} 0s${w*.5} -${hh} ${w} 0s-${w*.5} ${hh} -${w} 0z" fill="none" stroke="#fff" stroke-width="${q*.9}" stroke-linecap="round"/>`;
+    const s = hole*q, o = h0*q, pad = q*.35;
+    // white tile + the company's original logo (black on white)
+    out += `<rect x="${o-pad}" y="${o-pad}" width="${s+2*pad}" height="${s+2*pad}" rx="${q*1.4}" fill="#fff"/>`;
+    const lw = s*1.06, lh = lw*LOGO_RATIO;
+    out += `<image href="${LOGO_SRC}" x="${50-lw/2}" y="${50-lh/2}" width="${lw}" height="${lh}" preserveAspectRatio="xMidYMid meet"/>`;
     svg.innerHTML = `<g fill="#000">${out}</g>`;
   }
-  drawQR(document.getElementById('qr'));
+  let LOGO_SRC = 'logo.png', LOGO_RATIO = 0.66;
+  // embed the logo as data URL so the downloaded SVG keeps it
+  fetch('logo.png').then(r=>r.blob()).then(b=>new Promise(res=>{const fr=new FileReader();fr.onload=()=>res(fr.result);fr.readAsDataURL(b);}))
+    .then(d=>new Promise(res=>{const im=new Image();im.onload=()=>{LOGO_SRC=d;LOGO_RATIO=im.naturalHeight/im.naturalWidth;res();};im.src=d;}))
+    .catch(()=>{}).finally(()=>drawQR(document.getElementById('qr')));
 
-  document.getElementById('guides').onchange = e => document.body.classList.toggle('guides', e.target.checked);
   document.getElementById('print').onclick = () => window.print();
   document.getElementById('svg').onclick = () => {
     const s = document.getElementById('qr').cloneNode(true);
