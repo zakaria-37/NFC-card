@@ -3,6 +3,7 @@
 Page ouverte quand on approche un téléphone de la carte NFC du gérant.
 
 - `index.html` : page du gérant (Appeler, WhatsApp 0550 57 50 93, Enregistrer le contact, boutique et réseaux).
+- `carte.html` : conception de la carte NFC recto / verso (85,6 × 54 mm + fond perdu) avec QR personnalisé.
 - `contact.vcf` : fiche contact téléchargée par le bouton « Enregistrer ».
 - `intro.mp4`, `logo.png` : vidéo d'intro et logo.
 
