@@ -22,9 +22,12 @@
   /* ---------- Intro / loader ---------- */
   #intro{position:fixed;inset:0;z-index:50;background:#000;display:grid;place-items:center;transition:clip-path 1s cubic-bezier(.77,0,.18,1) .2s;clip-path:circle(150% at 50% 50%)}
   #intro.out{clip-path:circle(0% at 50% 50%)}
-  #intro svg{width:120px;overflow:visible}
-  #intro path{fill:none;stroke:#fff;stroke-width:6;stroke-linecap:round;stroke-dasharray:420;stroke-dashoffset:420;animation:draw 1.3s ease forwards}
-  @keyframes draw{to{stroke-dashoffset:0}}
+  /* the video has a light-grey studio background: match it so there are no bars */
+  #intro{background:radial-gradient(ellipse at center,#eef0f0 0%,#e8ebea 45%,#dcdfdf 100%)}
+  #intro video{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;height:auto;
+    -webkit-mask-image:radial-gradient(ellipse 50% 50% at center,#000 70%,transparent 100%);mask-image:radial-gradient(ellipse 50% 50% at center,#000 70%,transparent 100%)}
+  @media (orientation:portrait){#intro video{width:150vw}}
+  #skip{position:absolute;bottom:calc(28px + env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);font:500 .72rem 'Poppins',sans-serif;letter-spacing:.2em;color:rgba(0,0,0,.55);background:none;border:1px solid rgba(0,0,0,.2);border-radius:999px;padding:8px 16px;cursor:pointer}
 
   /* ---------- Background ---------- */
   canvas#net{position:fixed;inset:0;z-index:0;pointer-events:none}
@@ -118,7 +121,8 @@
 <body>
 
 <div id="intro" aria-hidden="true">
-  <svg viewBox="0 0 120 60"><path d="M60 30c-10-14-20-22-32-22a22 22 0 0 0 0 44c12 0 22-8 32-22s20-22 32-22a22 22 0 0 1 0 44c-12 0-22-8-32-22z"/></svg>
+  <video id="introVid" src="intro.mp4" muted playsinline autoplay preload="auto" disablepictureinpicture></video>
+  <button id="skip" type="button">PASSER</button>
 </div>
 
 <canvas id="net" aria-hidden="true"></canvas>
@@ -184,7 +188,9 @@
 
   /* Intro, then reveal */
   const intro = document.getElementById('intro');
+  let started = false;
   const start = () => {
+    if (started) return; started = true;
     intro.classList.add('out');
     setTimeout(() => intro.remove(), 1300);
     // title letters
@@ -197,7 +203,18 @@
     });
     typeLoop();
   };
-  setTimeout(start, reduce ? 0 : 1400);
+  /* Intro video (3 s) — the page opens when it ends, on tap, or after a safety timeout */
+  const vid = document.getElementById('introVid');
+  document.getElementById('skip').onclick = start;
+  intro.addEventListener('click', start);
+  if (reduce) start();
+  else {
+    vid.addEventListener('ended', start);
+    vid.addEventListener('error', start);
+    const p = vid.play();
+    if (p && p.catch) p.catch(() => setTimeout(start, 600)); // autoplay blocked
+    setTimeout(start, 7000);                                  // never stay stuck on the intro
+  }
 
   /* Typewriter tagline */
   const phrases = ['Sacs & accessoires', 'Élégance au quotidien', 'Suivez-nous partout', 'Nouvelle collection'];
